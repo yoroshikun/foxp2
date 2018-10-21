@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: #000;
+  font-size: 16px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.leftSideSearchBar {
+  min-width: 18rem;
+  height: 100vh;
+  background-color: #1B1B1E;
+  padding: 0 2rem 0 2rem;
+}
+
+.pokedexRight {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  flex-grow: 1;
+  height: 100vh;
+}
+
+.pokedexMain {
+  height: 85vh;
+  width: 100%;
+}
+
+.pokedexBackground {
+  position: fixed;
+  z-index: -1;
+  height: 40vh;
+  transform-origin: center;
+  transform: rotate(-3deg) translate(-100px, -60px);
+  width: 180vh;
+  background-color: #f4504f;
+  transition: transform 0.375s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.pokedexBackground.hide {
+  transform: rotate(-3deg) translate(-100px, -460px);
+}
+
+.pokedexLower {
+  height: 15vh;
+  background-color: #f2f3f5;
+  z-index: 1;
+}
+
+.normal {
+  color: #a8a77d;
+  background-color: #a8a77d;
+}
+
+.fire {
+  color: #e38544;
+  background-color: #e38544;
+}
+
+.fighting {
+  color: #b23c31;
+  background-color: #b23c31;
+}
+
+.water {
+  color: #6e91e9;
+  background-color: #6e91e9;
+}
+
+.flying {
+  color: #a493ea;
+  background-color: #a493ea;
+}
+
+.grass {
+  color: #8ac560;
+  background-color: #8ac560;
+}
+
+.poison {
+  color: #95499b;
+  background-color: #95499b;
+}
+
+.electric {
+  color: #f3d054;
+  background-color: #f3d054;
+}
+
+.ground {
+  color: #dcc075;
+  background-color: #dcc075;
+}
+
+.psychic {
+  color: #e86488;
+  background-color: #e86488;
+}
+
+.rock {
+  color: #b5a04b;
+  background-color: #b5a04b;
+}
+
+.ice {
+  color: #a4d6d7;
+  background-color: #a4d6d7;
+}
+
+.bug {
+  color: #abb642;
+  background-color: #abb642;
+}
+
+.dragon {
+  color: #6744ef;
+  background-color: #6744ef;
+}
+
+.ghost {
+  color: #6c5a94;
+  background-color: #6c5a94;
+}
+
+.dark {
+  color: #6d594a;
+  background-color: #6d594a;
+}
+
+.steel {
+  color: #b8b8ce;
+  background-color: #b8b8ce;
+}
+
+.fairy {
+  color: #e39dac;
+  background-color: #e39dac;
+}
+
+.unknown {
+  color: #739e91;
+  background-color: #739e91;
+}
