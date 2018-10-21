@@ -6,7 +6,7 @@ const pokedexStore = () => {
       nextPokemon: null,
       previousPokemon: null,
       currentPokemon: null,
-      cachedPokemon: null,
+      cachedPokemon: {},
       pokedexChange: false
     }),
     mutations: {
@@ -19,6 +19,9 @@ const pokedexStore = () => {
       setPreviousPokemonData(state, previousPokemonData) {
         state.previousPokemon = previousPokemonData
       },
+      setPokemonCacheData(state, data) {
+        state.cachedPokemon[data.id] = data
+      },
       togglePokedexChange(state) {
         state.pokedexChange = !state.pokedexChange
         setTimeout(() => {
@@ -27,24 +30,53 @@ const pokedexStore = () => {
       }
     },
     actions: {
-      async getCurrentPokemonData({ commit }, id) {
-        const currentPokemonData = await this.$axios.$get('pokemon/' + id + '/')
-        const sortedPokemonData = pokeSort(currentPokemonData)
-        commit('setCurrentPokemonData', sortedPokemonData)
+      async getCurrentPokemonData({ commit, state }, id) {
+        // Check if Pokemon is already cached
+        if (state.cachedPokemon.hasOwnProperty(id)) {
+          const currentPokemonData = state.cachedPokemon[id]
+          commit('setCurrentPokemonData', currentPokemonData)
+        } else {
+          const currentPokemonData = await this.$axios.$get(
+            'pokemon/' + id + '/'
+          )
+          const sortedPokemonData = pokeSort(currentPokemonData)
+          commit('setCurrentPokemonData', sortedPokemonData)
+          commit('setPokemonCacheData', sortedPokemonData)
+        }
       },
-      async getNextPokemonData({ commit }, id) {
-        const nextPokemonData = await this.$axios.$get(
-          'pokemon/' + (id + 1) + '/'
-        )
-        const sortedPokemonData = pokeSort(nextPokemonData)
-        commit('setNextPokemonData', sortedPokemonData)
+      async getNextPokemonData({ commit, state }, id) {
+        if (id <= 801) {
+          if (state.cachedPokemon.hasOwnProperty(id + 1)) {
+            const nextPokemonData = state.cachedPokemon[id + 1]
+            commit('setNextPokemonData', nextPokemonData)
+          } else {
+            const nextPokemonData = await this.$axios.$get(
+              'pokemon/' + (id + 1) + '/'
+            )
+            const sortedPokemonData = pokeSort(nextPokemonData)
+            commit('setNextPokemonData', sortedPokemonData)
+            commit('setPokemonCacheData', sortedPokemonData)
+          }
+        } else {
+          commit('setNextPokemonData', null)
+        }
       },
-      async getPreviousPokemonData({ commit }, id) {
-        const previousPokemonData = await this.$axios.$get(
-          'pokemon/' + (id - 1) + '/'
-        )
-        const sortedPokemonData = pokeSort(previousPokemonData)
-        commit('setPreviousPokemonData', sortedPokemonData)
+      async getPreviousPokemonData({ commit, state }, id) {
+        if (id >= 2) {
+          if (state.cachedPokemon.hasOwnProperty(id - 1)) {
+            const previousPokemonData = state.cachedPokemon[id - 1]
+            commit('setPreviousPokemonData', previousPokemonData)
+          } else {
+            const previousPokemonData = await this.$axios.$get(
+              'pokemon/' + (id - 1) + '/'
+            )
+            const sortedPokemonData = pokeSort(previousPokemonData)
+            commit('setPreviousPokemonData', sortedPokemonData)
+            commit('setPokemonCacheData', sortedPokemonData)
+          }
+        } else {
+          commit('setPreviousPokemonData', null)
+        }
       }
     }
   })

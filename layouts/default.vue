@@ -37,9 +37,11 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('getPreviousPokemonData', 4)
-    this.$store.dispatch('getCurrentPokemonData', 4)
-    this.$store.dispatch('getNextPokemonData', 4)
+    if (!this.$store.state.currentPokemon) {
+      this.$store.dispatch('getPreviousPokemonData', 4)
+      this.$store.dispatch('getCurrentPokemonData', 4)
+      this.$store.dispatch('getNextPokemonData', 4)
+    }
   }
 }
 </script>

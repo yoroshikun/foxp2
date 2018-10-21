@@ -51,7 +51,7 @@
 
 .nextPokemon {
   display: flex;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0 2rem auto;
   padding-right: 1rem;
   border-radius: 1rem;
   border: 1px rgba(0, 0, 0, 0) solid;
