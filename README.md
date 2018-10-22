@@ -1,5 +1,39 @@
 # foxp2 🦊
 
+To run this project you need to download the project and install its dependencies ( The package manager is yarn by default )
+
+```
+$ git clone https://github.com/yoroshikun/foxp2.git
+$ cd foxp2
+$ yarn install
+```
+
+You can also use npm as the package manager by running the following in the project directory
+
+```
+$ npm install
+```
+
+Once the dependencies have been met you can now run it in development mode or build it with the following commands (Yarn or npm)
+
+```
+$ yarn run dev
+$ yarn build
+$ yarn generate
+$ yarn start
+
+$ npm run dev
+$ npm build
+$ npm generate
+$ npm start
+
+```
+
+When building using either the `build` or `generate` command you must then use the `start` command to run it locally
+
+*Note* The `generate` command will generate static resources that are suited for static hosting, while the `build` command will generate files to run in a node server environment.
+
+
 ___
 
 _**Note this readme will now be incorrect now that the bootstrapping has been done with Vue.js / Nuxt.js, The below readme has been transfered for legacy**_
